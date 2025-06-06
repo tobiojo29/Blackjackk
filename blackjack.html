@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Betting Game</title>
+    <link rel="stylesheet" href="blackjack.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-table">
+            <!-- Game Header -->
+            <div class="header">
+                <h1 class="game-title">BLACKJACK</h1>
+                <div class="game-message" id="gameMessage">Click "New Game" to start!</div>
+            </div>
+
+            <!-- Game Statistics -->
+            <div class="game-info">
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number" id="wins">0</div>
+                        <div class="stat-label">Wins</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="losses">0</div>
+                        <div class="stat-label">Losses</div>
+                    </div>
+                </div>
+                
+                <div class="betting-info">
+                    <div class="stat">
+                        <div class="stat-number">$<span id="balance">1000</span></div>
+                        <div class="stat-label">Balance</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$<span id="currentBet">0</span></div>
+                        <div class="stat-label">Current Bet</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">$<span id="totalWinnings">0</span></div>
+                        <div class="stat-label">Total Winnings</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dealer Section -->
+            <div class="player-section">
+                <div class="section-title">DEALER</div>
+                <div class="cards-container" id="dealerCards"></div>
+                <div class="score">Score: <span id="dealerScore">0</span></div>
+            </div>
+
+            <!-- Player Section -->
+            <div class="player-section">
+                <div class="section-title">PLAYER</div>
+                <div class="cards-container" id="playerCards"></div>
+                <div class="score">Score: <span id="playerScore">0</span></div>
+            </div>
+
+            <!-- Betting Controls -->
+            <div class="betting-controls">
+                <div class="chip-buttons">
+                    <button class="chip-btn chip-5" id="chip5" onclick="placeBet(5)" style="display: none;">
+                        $5
+                    </button>
+                    <button class="chip-btn chip-25" id="chip25" onclick="placeBet(25)" style="display: none;">
+                        $25
+                    </button>
+                    <button class="chip-btn chip-100" id="chip100" onclick="placeBet(100)" style="display: none;">
+                        $100
+                    </button>
+                </div>
+                
+                <div class="bet-actions">
+                    <button class="game-btn game-btn-primary" id="dealBtn" onclick="dealCards()" style="display: none;">
+                        Deal Cards
+                    </button>
+                    <button class="game-btn game-btn-secondary" id="clearBetBtn" onclick="clearBet()" style="display: none;">
+                        Clear Bet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game Controls -->
+            <div class="game-controls">
+                <button class="game-btn game-btn-primary" id="newGameBtn" onclick="startNewGame()">
+                    New Game
+                </button>
+                <button class="game-btn game-btn-primary" id="hitBtn" onclick="hit()" style="display: none;">
+                    Hit
+                </button>
+                <button class="game-btn game-btn-secondary" id="standBtn" onclick="stand()" style="display: none;">
+                    Stand
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Dialog -->
+    <div class="dialog-overlay" id="winDialog" style="display: none;">
+        <div class="dialog win-dialog">
+            <div class="dialog-header">
+                <h2 class="dialog-title">🎉 Congratulations! 🎉</h2>
+                <p class="dialog-message" id="winMessage"></p>
+            </div>
+            <div class="dialog-footer">
+                <button class="game-btn game-btn-primary" onclick="closeDialog('winDialog'); startNewGame();">
+                    Play Again!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lose Dialog -->
+    <div class="dialog-overlay" id="loseDialog" style="display: none;">
+        <div class="dialog lose-dialog">
+            <div class="dialog-header">
+                <h2 class="dialog-title">Better Luck Next Time!</h2>
+                <p class="dialog-message" id="loseMessage"></p>
+            </div>
+            <div class="dialog-footer">
+                <button class="game-btn game-btn-primary" onclick="closeDialog('loseDialog'); startNewGame();">
+                    Try Again!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="blackjack.js"></script>
+</body>
+</html>

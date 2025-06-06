@@ -1,0 +1,408 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+}
+
+.game-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(ellipse at center, #2a2a2a 0%, #1a1a1a 70%);
+}
+
+.game-table {
+    background: linear-gradient(145deg, #1e1e1e, #0a0a0a);
+    border: 3px solid #333333;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+}
+
+.game-table::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #333, #666, #333);
+    border-radius: 22px;
+    z-index: -1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+.game-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.game-message {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+    min-height: 1.5em;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    border: 1px solid #4b5563;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.betting-info {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.player-section {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.75rem;
+    border: 1px solid #4b5563;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cards-container {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+    min-height: 120px;
+    align-items: center;
+}
+
+.playing-card {
+    width: 70px;
+    height: 100px;
+    background: #ffffff;
+    color: #000000;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: perspective(1000px) rotateY(0deg);
+    transition: all 0.3s ease;
+    position: relative;
+    animation: dealCard 0.5s ease-out;
+}
+
+.playing-card.red {
+    color: #cc0000;
+}
+
+.playing-card.hidden {
+    background: linear-gradient(145deg, #333333, #1a1a1a);
+    color: #666666;
+    border-color: #555555;
+}
+
+.playing-card:hover {
+    transform: perspective(1000px) rotateY(5deg) translateY(-2px);
+}
+
+.card-value {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-suit {
+    font-size: 1.25rem;
+}
+
+.score {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+}
+
+.betting-controls {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.chip-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.chip-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.chip-5 {
+    background: linear-gradient(145deg, #dc2626, #991b1b);
+    border-color: #7f1d1d;
+}
+
+.chip-25 {
+    background: linear-gradient(145deg, #059669, #047857);
+    border-color: #064e3b;
+}
+
+.chip-100 {
+    background: linear-gradient(145deg, #1d4ed8, #1e40af);
+    border-color: #1e3a8a;
+}
+
+.chip-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.bet-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+}
+
+.game-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.game-btn:hover::before {
+    left: 100%;
+}
+
+.game-btn-primary {
+    background: linear-gradient(145deg, #ffffff, #e0e0e0);
+    color: #000000;
+    border: 2px solid #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-btn-primary:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.game-btn-secondary {
+    background: linear-gradient(145deg, #333333, #1a1a1a);
+    color: #ffffff;
+    border: 2px solid #555555;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-btn-secondary:hover {
+    background: linear-gradient(145deg, #404040, #2a2a2a);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.game-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.game-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.dialog {
+    background: linear-gradient(135deg, #1f2937, #000000);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+}
+
+.win-dialog {
+    border: 2px solid #ffffff;
+}
+
+.lose-dialog {
+    border: 2px solid #dc2626;
+}
+
+.dialog-header {
+    margin-bottom: 1.5rem;
+}
+
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.dialog-description {
+    font-size: 1.125rem;
+    color: #d1d5db;
+}
+
+.dialog-footer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+@keyframes dealCard {
+    from {
+        transform: translateY(-100px) rotateY(180deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-table {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .game-title {
+        font-size: 2.5rem;
+    }
+
+    .playing-card {
+        width: 60px;
+        height: 85px;
+        font-size: 0.8rem;
+    }
+
+    .game-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .stats {
+        gap: 1rem;
+    }
+}
